@@ -25,13 +25,26 @@ const bdk = BDK();
 const App: () => React$Node = () => {
   console.log(`V8 version is ${global._v8runtime().version}`);
   const [depositAddress, setDepositAddress] = useState('');
+  const [mnemonicWords, setMnemonicWords] = useState('');
+  useEffect(() => {
+    initWallet();
+  }, []);
   const initWallet = async () => {
     console.log('Calling init wallet');
     try {
-      const address = await bdk.init();
-      setDepositAddress(address);
+      const {mnemonicWords: mw, depositAddress: da} = await bdk.init();
+      setDepositAddress(da);
+      setMnemonicWords(mw);
     } catch (err) {
-      console.error('Error init BDK', err);
+      console.log(
+        'Error init BDK, config could already be there trying to start',
+      );
+    }
+    try {
+      console.log('Calling start bdk');
+      await bdk.startBdk();
+    } catch (err) {
+      console.error('error starting bdk', err);
     }
   };
   return (

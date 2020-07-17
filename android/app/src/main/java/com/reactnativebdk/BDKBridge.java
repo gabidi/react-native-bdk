@@ -48,7 +48,7 @@ public class BDKBridge extends ReactContextBaseJavaModule {
         Log.d("BDK:initConfig", "starting initConfig" + this.getWorkDir() + ", net:" + this.network + ", pass:" + passphrase);
         Optional<InitResult> initResult = this.bdkApi.initConfig(this.getWorkDir(), this.network, passphrase, "123");
         Log.d("BDK:initConfig", "initResult done...");
-        String[] bitcoinPeers = {"127.0.0.1:9333", "127.0.0.1:19333"};
+        String[] bitcoinPeers = {};
         this.bdkApi.updateConfig(this.getWorkDir(), this.network, bitcoinPeers, 10, true);
         Log.d("BDK:initConfig", "UpdateConfig done...");
         Log.d("BDK:initConfig", initResult.isPresent() ? "Init result present" : "Init result not there!");
@@ -77,6 +77,7 @@ public class BDKBridge extends ReactContextBaseJavaModule {
                     Log.d("BDK:Start:Thread", "bdk thread start done");
                 }
             });
+            this.bdkThread.start();
             promise.resolve("ok");
         } else {
             promise.reject("config missing or thread already started");
