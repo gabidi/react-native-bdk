@@ -26,9 +26,9 @@ export CXX_i686_linux_android=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x
 `sdkmanager --install ndk;21.3.6528147`
 2. Update BDK-Android `lib/build.gradle` with target SDK for Android 
 3. Set env variable for JS lib 
-`export LD_LIBRARY_PATH=[project_home]/lib/src/test/jniLibs/x86_64`
+`export LD_LIBRARY_PATH="$(pwd)/lib/src/test/jniLibs/x86_64/"
 - TODO Make this gradle task system var
-- TODO build will fail on Ubuntu systems due to depedency versions, but aar files will be built:
+
 4. Build AAR in bdk-android by running
 `./gradlew clean build`
 5. AAR will be built in:

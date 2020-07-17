@@ -23,6 +23,7 @@ import {BDK} from './src/lib/io/BDKBridge';
 const bdk = BDK();
 
 const App: () => React$Node = () => {
+  console.log(`V8 version is ${global._v8runtime().version}`);
   const [depositAddress, setDepositAddress] = useState('');
   const initWallet = async () => {
     console.log('Calling init wallet');
