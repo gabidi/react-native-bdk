@@ -21,7 +21,7 @@ export CXX_i686_linux_android=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x
 ```
 4.  Compile BDK 
 
-## 2.  Building AAR (bbk-android)
+## 2.  Building AAR (bdk-android)
 1. Make sure requried NDK is installed
 `sdkmanager --install ndk;21.3.6528147`
 2. Update BDK-Android `lib/build.gradle` with target SDK for Android 
